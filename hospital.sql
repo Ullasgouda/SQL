@@ -309,3 +309,8 @@ SELECT * FROM country;
 ROLLBACK;
 
 SELECT * FROM country;
+create user 'ragghs'@'localhost'
+identified by 'ullas@123';
+grant select
+on hospital_data.bill_states
+to  'ragghs'@'localhost';

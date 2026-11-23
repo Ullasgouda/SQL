@@ -904,4 +904,50 @@ having min(sal)>25000 and max(sal)<70000;
 
 select *from emp1;
 use batch10;
+select first_name,sal
+from emp1
+where sal>(select sal
+from emp1
+where first_name in ('Ullasgouda'));
+select first_name,deptno
+from emp1
+where deptno in (select deptno
+from emp1
+where first_name in ('Ullasgouda'));
+select First_name,sal
+from emp1
+where hiredate<(select hiredate 
+from emp1
+where first_name in ('Ullasgouda'));
 
+-- 02
+
+select *
+from emp1
+where sal > (select sal 
+from emp1 
+where first_name in ('Sushma')) and
+sal<(select sal 
+from emp1
+where first_name in ('Rohini'));
+
+
+-- 03
+
+
+select first_name, sal ,hiredate
+from emp1
+where hiredate like '2023______' and job in (select job
+from emp1
+where first_name in ('Ullasgouda'));
+
+
+-- 04
+
+
+select *
+from emp1
+where sal in (select max(sal)
+from emp1
+group by deptno
+order by deptno );

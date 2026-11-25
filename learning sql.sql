@@ -1415,5 +1415,60 @@ where deptno in (	select deptno
                     where first_name like '%A%');
 use batch10;
 
+-- 01
+
+
+SELECT 
+    first_name
+FROM
+    emp1
+WHERE
+    sal > ALL (SELECT 
+            sal
+        FROM
+            emp1
+        WHERE
+            job IN ('Python Developer'));
+
+-- 02
+
+SELECT 
+    first_name, sal
+FROM
+    emp1
+WHERE
+    sal < ANY (SELECT 
+            sal
+        FROM
+            emp1
+        WHERE
+            job IN ('Java Developer'));
+
+-- 03
+
+
+SELECT 
+    first_name
+FROM
+    emp1
+WHERE
+    hiredate > ALL (SELECT 
+            hiredate
+        FROM
+            emp1
+        WHERE
+            job IN ('Data Engineer'))
+        AND sal > ALL (SELECT 
+            sal
+        FROM
+            emp
+        WHERE
+            job IN ('Python Developer'));
+SELECT 
+    *
+FROM
+    emp1;
+
+
 
 

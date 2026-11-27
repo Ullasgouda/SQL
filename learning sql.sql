@@ -1468,6 +1468,59 @@ SELECT
     *
 FROM
     emp1;
+use batch10;
+select max(sal)
+from emp1
+where sal < (select max(sal)
+from emp1
+where sal<(select max(sal)
+from emp1));
+
+-- 02
+select dname
+from dept
+where deptno in ( select deptno
+from emp1
+where sal in (select max(sal)
+from emp1));
+
+
+
+-- 03
+select loc
+from dept
+where deptno in ( select deptno
+from emp1 
+where sal in ( select min(sal)
+from emp1
+where sal > (select min(sal)
+from emp1)));
+
+-- 04
+
+select first_name
+from emp1
+where sal in (select max(sal)
+from emp1
+where deptno in (select deptno
+from dept
+where dname in ('Python')));
+
+-- 05
+select dname 
+from dept
+where deptno in (select deptno
+from emp1
+where comm in (select max(comm)
+from emp1));
+-- 06
+select * from emp1;
+select first_name,job
+from emp1
+where deptno in (select deptno
+from dept 
+where dname like'_a%');
+
 
 
 
